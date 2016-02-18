@@ -3,8 +3,8 @@ JSON
 
 [![Build Status](https://travis-ci.org/LitGroup/json.php.svg?branch=master)](https://travis-ci.org/LitGroup/json.php)
 
-Example Of Usage
-----------------
+Examples Of Usage
+-----------------
 
 ### Encoder
 
