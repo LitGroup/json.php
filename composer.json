@@ -1,6 +1,6 @@
 {
     "name": "litgroup/json",
-    "description": "Library for JSON encode/decode and manipulation.",
+    "description": "Library for JSON encode/decode.",
     "type": "library",
     "license": "MIT",
     "authors": [

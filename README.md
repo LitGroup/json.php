@@ -11,13 +11,13 @@ TODO: Write examples.
 Run Tests
 ---------
 
-```
+```bash
 ./tests.sh
 ```
 
 To run tests with coverage:
 
-```
+```bash
 ./tests.sh --coverage
 ```
 
@@ -26,4 +26,4 @@ HTML-report with code coverage will be stored in the `build/coverage`.
 LICENSE
 -------
 
-See [LICENSE](LICENSE) file for details.
+See [LICENSE](https://github.com/LitGroup/json.php/blob/master/LICENSE) file for details.
