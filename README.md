@@ -85,6 +85,33 @@ Json::getInstance()->encode(...);
 Json::getInstance()->decode(...);
 ```
 
+Configuration Reference
+-----------------------
+
+### Encoder configuration
+
+| Option               | Default   | Description                                                                  |
+| -------------------- | --------- | ---------------------------------------------------------------------------- |
+| MaxDepth             | `512`     | Maximum depth.                                                               |
+| ForceObject          | `false`   | Outputs an object rather than an array when a non-associative array is used. |
+| HexAmp               | `false`   | All `&`s are converted to `\u0026`.                                          |
+| HexApos              | `false`   | All `'` are converted to `\u0027`.                                           |
+| HexQuot              | `false`   | All `"` are converted to `\u0022`.                                           |
+| HexTag               | `false`   | All `<` and `>` are converted to `\u003C` and `\u003E`.                      |
+| NumericCheck         | `false`   | Encodes numeric strings as numbers.                                          |
+| PartialOutputOnError | `false`   | Substitute some unencodable values instead of failing.                       |
+| PrettyPrint          | `false`   | Use whitespace in returned data to format it.                                |
+| UnescapedSlashes     | `true`    | Don't escape `/`.                                                            |
+| UnescapedUnicode     | `true`    | Encode multibyte Unicode characters literally.                               |
+
+### Decoder configuration
+
+| Option   | Default   | Description                                                                        |
+| -------- | --------- | ---------------------------------------------------------------------------------- |
+| MaxDepth | `512`     | Maximum depth.                                                                     |
+| UseAssoc | `true`    | If UseAssoc is enabled — JSON-object will be presented as a PHP associative array. |
+
+
 Run Tests
 ---------
 
