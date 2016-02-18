@@ -11,7 +11,7 @@
 namespace LitGroup\Json;
 
 /**
- * Single tone JSON codec with default configuration.
+ * Singleton JSON codec with default configuration.
  *
  * @author Roman Shamritskiy <roman@litgroup.ru>
  */
@@ -40,6 +40,22 @@ class Json implements CodecInterface
         }
 
         return self::$instance;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function getEncoder()
+    {
+        return $this->codec->getEncoder();
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function getDecoder()
+    {
+        return $this->codec->getDecoder();
     }
 
     /**

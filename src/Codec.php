@@ -43,6 +43,22 @@ class Codec implements CodecInterface
     /**
      * {@inheritDoc}
      */
+    public function getEncoder()
+    {
+        return $this->encoder;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function getDecoder()
+    {
+        return $this->decoder;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
     public function encode($value)
     {
         return $this->encoder->encode($value);

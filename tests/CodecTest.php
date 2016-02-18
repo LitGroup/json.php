@@ -111,4 +111,20 @@ class CodecTest extends \PHPUnit_Framework_TestCase
 
         $this->codec->decode(self::ENCODED_DATA);
     }
+
+    /**
+     * @test
+     */
+    public function testGetEncoder()
+    {
+        $this->assertSame($this->encoder, $this->codec->getEncoder());
+    }
+
+    /**
+     * @test
+     */
+    public function testGetDecoder()
+    {
+        $this->assertSame($this->decoder, $this->codec->getDecoder());
+    }
 }

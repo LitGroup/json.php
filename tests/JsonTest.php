@@ -10,6 +10,8 @@
 
 namespace Tests\LitGroup\Json;
 
+use LitGroup\Json\Decoder;
+use LitGroup\Json\Encoder;
 use LitGroup\Json\Json;
 
 class JsonTest extends \PHPUnit_Framework_TestCase
@@ -34,6 +36,22 @@ class JsonTest extends \PHPUnit_Framework_TestCase
             '{"item":"Tesla Model S","amount":10,"comment":"UTF8 Строка"}',
             Json::getInstance()->encode(['item' => 'Tesla Model S', 'amount' => 10, 'comment' => 'UTF8 Строка'])
         );
+    }
+
+    /**
+     * @test
+     */
+    public function testGetEncoder()
+    {
+        $this->assertInstanceOf(Encoder::class, Json::getInstance()->getEncoder());
+    }
+
+    /**
+     * @test
+     */
+    public function testGetDecoder()
+    {
+        $this->assertInstanceOf(Decoder::class, Json::getInstance()->getDecoder());
     }
 
     /**
