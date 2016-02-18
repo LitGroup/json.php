@@ -36,7 +36,7 @@ use LitGroup\Json\DecoderConfiguration;
 // Create configuration:
 $configuration = new DecoderConfiguration();
 
-// set decode options:
+// Set decode options:
 $configuration
     ->setBigIntAsString(true)
 ;
