@@ -1,0 +1,41 @@
+{
+    "name": "litgroup/json",
+    "description": "Library for JSON encode/decode and manipulation.",
+    "type": "library",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Roman Shamritskiy",
+            "email": "roman@litgroup.ru"
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+            "LitGroup\\Json\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Tests\\LitGroup\\Json\\": "tests/"
+        }
+    },
+    "require": {
+        "php": "~5.6.6|~7.0"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "~5.2@stable"
+    },
+    "extra": {
+        "branch-alias": {
+            "dev-master": "1.0.x-dev"
+        }
+    },
+    "archive": {
+        "exclude": [
+            "/tests",
+            "/phpunit.xml.dist",
+            "/.travis.yml",
+            ".gitignore"
+        ]
+    }
+}
