@@ -13,7 +13,6 @@ namespace Tests\LitGroup\Json;
 
 use LitGroup\Json\Decoder;
 use LitGroup\Json\DecoderConfiguration;
-use const JSON_BIGINT_AS_STRING;
 
 class DecoderTest extends \PHPUnit_Framework_TestCase
 {

@@ -10,18 +10,6 @@
 
 namespace LitGroup\Json;
 
-use const JSON_HEX_TAG;
-use const JSON_HEX_AMP;
-use const JSON_HEX_APOS;
-use const JSON_HEX_QUOT;
-use const JSON_FORCE_OBJECT;
-use const JSON_NUMERIC_CHECK;
-use const JSON_PRETTY_PRINT;
-use const JSON_UNESCAPED_SLASHES;
-use const JSON_UNESCAPED_UNICODE;
-use const JSON_PARTIAL_OUTPUT_ON_ERROR;
-use const JSON_PRESERVE_ZERO_FRACTION;
-
 /**
  * Configuration for JSON Encoder.
  *
@@ -34,7 +22,8 @@ class EncoderConfiguration extends AbstractConfiguration
         $this
             ->setUnescapedSlashes(true)
             ->setUnescapedUnicode(true)
-            ->setPreserveZeroFraction(true)
+            // TODO (Sharom): Uncomment it when support of PHP 5.5 will finish.
+            // ->setPreserveZeroFraction(true)
         ;
     }
 
@@ -160,15 +149,16 @@ class EncoderConfiguration extends AbstractConfiguration
         return $this->switchOption(JSON_PARTIAL_OUTPUT_ON_ERROR, $partialOutputOnError);
     }
 
-    /**
-     * Ensures that float values are always encoded as a float value (Default: true).
-     *
-     * @param bool $preserveZeroFraction
-     *
-     * @return $this
-     */
-    public function setPreserveZeroFraction($preserveZeroFraction)
-    {
-        return $this->switchOption(JSON_PRESERVE_ZERO_FRACTION, $preserveZeroFraction);
-    }
+//    TODO (Sharom): Uncomment it when support of PHP 5.5 will finish.
+//    /**
+//     * Ensures that float values are always encoded as a float value (Default: true).
+//     *
+//     * @param bool $preserveZeroFraction
+//     *
+//     * @return $this
+//     */
+//    public function setPreserveZeroFraction($preserveZeroFraction)
+//    {
+//        return $this->switchOption(JSON_PRESERVE_ZERO_FRACTION, $preserveZeroFraction);
+//    }
 }

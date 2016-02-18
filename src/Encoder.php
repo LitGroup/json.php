@@ -10,8 +10,6 @@
 
 namespace LitGroup\Json;
 
-use const JSON_ERROR_NONE;
-use function json_encode;
 use LitGroup\Json\Exception\JsonException;
 
 /**

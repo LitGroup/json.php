@@ -10,17 +10,6 @@
 
 namespace Tests\LitGroup\Json;
 
-use const JSON_HEX_TAG;
-use const JSON_HEX_AMP;
-use const JSON_HEX_APOS;
-use const JSON_HEX_QUOT;
-use const JSON_FORCE_OBJECT;
-use const JSON_NUMERIC_CHECK;
-use const JSON_PRETTY_PRINT;
-use const JSON_UNESCAPED_SLASHES;
-use const JSON_UNESCAPED_UNICODE;
-use const JSON_PARTIAL_OUTPUT_ON_ERROR;
-use const JSON_PRESERVE_ZERO_FRACTION;
 use LitGroup\Json\EncoderConfiguration;
 
 class EncoderConfigurationTest extends \PHPUnit_Framework_TestCase
@@ -31,7 +20,7 @@ class EncoderConfigurationTest extends \PHPUnit_Framework_TestCase
     public function testDefaultOptions()
     {
         $this->assertSame(
-            JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE | JSON_PRESERVE_ZERO_FRACTION,
+            JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE,
             $this->getConfiguration()->getOptionsBitmask()
         );
     }

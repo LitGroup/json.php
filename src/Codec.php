@@ -10,8 +10,6 @@
 
 namespace LitGroup\Json;
 
-use LitGroup\Json\Exception\JsonException;
-
 /**
  * Class Codec
  *

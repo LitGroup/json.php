@@ -10,19 +10,8 @@
 
 namespace Tests\LitGroup\Json;
 
-use const JSON_HEX_TAG;
-use const JSON_HEX_AMP;
-use const JSON_HEX_APOS;
-use const JSON_HEX_QUOT;
-use const JSON_FORCE_OBJECT;
-use const JSON_NUMERIC_CHECK;
-use const JSON_PRETTY_PRINT;
-use const JSON_UNESCAPED_SLASHES;
-use const JSON_UNESCAPED_UNICODE;
-use const JSON_PARTIAL_OUTPUT_ON_ERROR;
 use LitGroup\Json\Encoder;
 use LitGroup\Json\EncoderConfiguration;
-use LitGroup\Json\Exception\JsonException;
 
 class EncoderTest extends \PHPUnit_Framework_TestCase
 {

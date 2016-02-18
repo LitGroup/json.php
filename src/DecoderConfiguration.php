@@ -10,8 +10,6 @@
 
 namespace LitGroup\Json;
 
-use const JSON_BIGINT_AS_STRING;
-
 /**
  * Configuration for JSON Decoder.
  *
