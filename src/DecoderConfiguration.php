@@ -26,13 +26,13 @@ class DecoderConfiguration extends AbstractConfiguration
     /**
      * If UseAssoc is enabled — JSON-object will be presented as a PHP associative array (Default: false).
      *
-     * @param bool $enabled
+     * @param bool $useAssoc
      *
      * @return $this
      */
-    public function setUseAssoc($enabled = true)
+    public function setUseAssoc($useAssoc)
     {
-        $this->useAssoc = (boolean) $enabled;
+        $this->useAssoc = (bool) $useAssoc;
 
         return $this;
     }
