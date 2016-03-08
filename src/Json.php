@@ -15,7 +15,7 @@ namespace LitGroup\Json;
  *
  * @author Roman Shamritskiy <roman@litgroup.ru>
  */
-class Json implements CodecInterface
+final class Json implements CodecInterface
 {
     /**
      * @var Json
