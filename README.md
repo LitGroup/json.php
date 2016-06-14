@@ -3,6 +3,8 @@ JSON
 
 [![Build Status](https://travis-ci.org/LitGroup/json.php.svg?branch=master)](https://travis-ci.org/LitGroup/json.php)
 
+See documentation for the last release [here][currentdoc]
+
 Examples Of Usage
 -----------------
 
@@ -131,3 +133,6 @@ LICENSE
 -------
 
 See [LICENSE](https://github.com/LitGroup/json.php/blob/master/LICENSE) file for details.
+
+
+[currentdoc]: https://github.com/LitGroup/json.php/blob/v0.1.1/README.md
