@@ -8,7 +8,7 @@
  * with this source code in the file LICENSE.
  */
 
-namespace Tests\LitGroup\Json;
+namespace Test\LitGroup\Json;
 
 use LitGroup\Json\EncoderConfiguration;
 
