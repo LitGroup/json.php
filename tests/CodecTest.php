@@ -10,12 +10,13 @@
 
 namespace Test\LitGroup\Json;
 
+use PHPUnit\Framework\TestCase;
 use LitGroup\Json\Codec;
 use LitGroup\Json\DecoderInterface;
 use LitGroup\Json\EncoderInterface;
 use LitGroup\Json\Exception\JsonException;
 
-class CodecTest extends \PHPUnit_Framework_TestCase
+class CodecTest extends TestCase
 {
     const DECODED_DATA = 'json';
     const ENCODED_DATA = '"json"';
@@ -38,8 +39,8 @@ class CodecTest extends \PHPUnit_Framework_TestCase
 
     protected function setUp()
     {
-        $this->encoder = $this->getMock(EncoderInterface::class);
-        $this->decoder = $this->getMock(DecoderInterface::class);
+        $this->encoder = $this->createMock(EncoderInterface::class);
+        $this->decoder = $this->createMock(DecoderInterface::class);
         $this->codec = new Codec($this->encoder, $this->decoder);
     }
 

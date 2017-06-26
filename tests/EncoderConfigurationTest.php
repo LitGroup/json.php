@@ -10,9 +10,10 @@
 
 namespace Test\LitGroup\Json;
 
+use PHPUnit\Framework\TestCase;
 use LitGroup\Json\EncoderConfiguration;
 
-class EncoderConfigurationTest extends \PHPUnit_Framework_TestCase
+class EncoderConfigurationTest extends TestCase
 {
     /**
      * @test

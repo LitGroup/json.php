@@ -10,9 +10,10 @@
 
 namespace Test\LitGroup\Json;
 
+use PHPUnit\Framework\TestCase;
 use LitGroup\Json\DecoderConfiguration;
 
-class DecoderConfigurationTest extends \PHPUnit_Framework_TestCase
+class DecoderConfigurationTest extends TestCase
 {
     const OPTIONS_DEFAULT = 0;
 

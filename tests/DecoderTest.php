@@ -10,11 +10,11 @@
 
 namespace Test\LitGroup\Json;
 
-
+use PHPUnit\Framework\TestCase;
 use LitGroup\Json\Decoder;
 use LitGroup\Json\DecoderConfiguration;
 
-class DecoderTest extends \PHPUnit_Framework_TestCase
+class DecoderTest extends TestCase
 {
     /**
      * @var DecoderConfiguration

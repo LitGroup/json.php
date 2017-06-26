@@ -10,9 +10,10 @@
 
 namespace Test\LitGroup\Json;
 
+use PHPUnit\Framework\TestCase;
 use LitGroup\Json\AbstractConfiguration;
 
-class AbstractConfigurationTest extends \PHPUnit_Framework_TestCase
+class AbstractConfigurationTest extends TestCase
 {
     const DEPTH_DEFAULT = 512;
     const DEPTH_CUSTOM = 128;
@@ -61,6 +62,6 @@ class AbstractConfigurationTest extends \PHPUnit_Framework_TestCase
      */
     private function getConfiguration()
     {
-        return $this->getMockForAbstractClass(AbstractConfiguration::class);
+        return new class extends AbstractConfiguration {};
     }
 }

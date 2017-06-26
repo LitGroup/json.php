@@ -10,10 +10,11 @@
 
 namespace Test\LitGroup\Json;
 
+use PHPUnit\Framework\TestCase;
 use LitGroup\Json\Encoder;
 use LitGroup\Json\EncoderConfiguration;
 
-class EncoderTest extends \PHPUnit_Framework_TestCase
+class EncoderTest extends TestCase
 {
     /**
      * @var EncoderConfiguration|\PHPUnit_Framework_MockObject_MockObject
@@ -28,7 +29,9 @@ class EncoderTest extends \PHPUnit_Framework_TestCase
 
     protected function setUp()
     {
-        $this->config = $this->getMock(EncoderConfiguration::class, ['getOptionsBitmask']);
+        $this->config = $this->getMockBuilder(EncoderConfiguration::class)
+            ->setMethods(['getOptionsBitmask'])
+            ->getMock();
         $this->encoder = new Encoder($this->config);
     }
 

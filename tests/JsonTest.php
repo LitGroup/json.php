@@ -10,11 +10,12 @@
 
 namespace Test\LitGroup\Json;
 
+use PHPUnit\Framework\TestCase;
 use LitGroup\Json\Decoder;
 use LitGroup\Json\Encoder;
 use LitGroup\Json\Json;
 
-class JsonTest extends \PHPUnit_Framework_TestCase
+class JsonTest extends TestCase
 {
     /**
      * @test
