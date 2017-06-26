@@ -1,8 +1,27 @@
-# Change Log
+# Changelog
 All notable changes to this project will be documented in this file.
-This project adheres to [Semantic Versioning](http://semver.org/).
+
+The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
+and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
+
+**Library has been completely overwritten without backward compatibility with
+previous releases.**
+
+### Removed
+- `AbstractConfiguration`
+- `Codec`
+- `CodecInterface`
+- `Decoder`
+- `DecoderConfiguration`
+- `DecoderInterface`
+- `Encoder`
+- `EncoderConfiguration`
+- `EncoderInterface`
+- `Exception/JsonException`
+- `Json`
+
 
 ## [0.1.1] - 2016-03-09
 ### Changed
