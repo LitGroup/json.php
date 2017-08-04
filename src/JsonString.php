@@ -38,13 +38,13 @@ final class JsonString implements JsonValue
         $this->str = $str;
     }
 
-    public function getString(): string
+    public function stringValue(): string
     {
         return $this->str;
     }
 
     public function equals(self $another): bool
     {
-        return $this->getString() === $another->getString();
+        return $this->stringValue() === $another->stringValue();
     }
 }

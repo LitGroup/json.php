@@ -9,6 +9,12 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 **Library has been completely overwritten without backward compatibility with
 previous releases.**
 
+### Added
+- `JsonValue` interface.
+- `JsonString` value object.
+- `JsonBoolean` value object.
+- `JsonNumber` value object.
+
 ### Removed
 - `AbstractConfiguration`
 - `Codec`
