@@ -23,30 +23,45 @@
 
 declare(strict_types=1);
 
-namespace Test\LitGroup\Json;
+namespace LitGroup\Json;
 
-use LitGroup\Json\JsonString;
-use LitGroup\Json\JsonValue;
-use PHPUnit\Framework\TestCase;
-
-class JsonStringTest extends TestCase
+final class JsonBoolean implements JsonValue
 {
-    function testInstance(): void
+    /** @var boolean */
+    private $value;
+
+    public static function trueValue(): self
     {
-        self::assertInstanceOf(JsonValue::class, new JsonString(''));
+        return new self(true);
     }
 
-    function testRetrievingOfStringValue(): void
+    public static function falseValue(): self
     {
-        $str = new JsonString('Hello');
-        self::assertEquals('Hello', $str->getString());
+        return new self(false);
     }
 
-    function testEquality(): void
+    public function __construct(bool $value)
     {
-        $str = new JsonString('Some string');
+        $this->value = $value;
+    }
 
-        self::assertTrue($str->equals(new JsonString('Some string')));
-        self::assertFalse($str->equals(new JsonString('Another string')));
+    public function getBool(): bool
+    {
+        return $this->value;
+    }
+
+    public function isTrue(): bool
+    {
+        return $this->getBool();
+    }
+
+    public function isFalse(): bool
+    {
+        return !$this->getBool();
+    }
+
+    public function equals(self $another): bool
+    {
+        return $this->getBool() === $another->getBool();
     }
 }

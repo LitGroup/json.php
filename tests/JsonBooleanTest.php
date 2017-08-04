@@ -25,28 +25,48 @@ declare(strict_types=1);
 
 namespace Test\LitGroup\Json;
 
-use LitGroup\Json\JsonString;
+use LitGroup\Json\JsonBoolean;
 use LitGroup\Json\JsonValue;
 use PHPUnit\Framework\TestCase;
 
-class JsonStringTest extends TestCase
+class JsonBooleanTest extends TestCase
 {
     function testInstance(): void
     {
-        self::assertInstanceOf(JsonValue::class, new JsonString(''));
+        self::assertInstanceOf(JsonValue::class, new JsonBoolean(true));
     }
 
-    function testRetrievingOfStringValue(): void
+    function testFactories(): void
     {
-        $str = new JsonString('Hello');
-        self::assertEquals('Hello', $str->getString());
+        self::assertTrue(JsonBoolean::trueValue()->getBool());
+        self::assertFalse(JsonBoolean::falseValue()->getBool());
+    }
+
+    function testBoolValue(): void
+    {
+        $jsonBoolean= new JsonBoolean(true);
+        self::assertTrue($jsonBoolean->getBool());
+
+        $jsonBoolean= new JsonBoolean(false);
+        self::assertFalse($jsonBoolean->getBool());
+    }
+
+    function testPredicates(): void
+    {
+        $jsonBoolean = new JsonBoolean(true);
+        self::assertTrue($jsonBoolean->isTrue());
+        self::assertFalse($jsonBoolean->isFalse());
+
+        $jsonBoolean = new JsonBoolean(false);
+        self::assertFalse($jsonBoolean->isTrue());
+        self::assertTrue($jsonBoolean->isFalse());
     }
 
     function testEquality(): void
     {
-        $str = new JsonString('Some string');
+        $jsonBoolean = new JsonBoolean(true);
 
-        self::assertTrue($str->equals(new JsonString('Some string')));
-        self::assertFalse($str->equals(new JsonString('Another string')));
+        self::assertTrue($jsonBoolean->equals(new JsonBoolean(true)));
+        self::assertFalse($jsonBoolean->equals(new JsonBoolean(false)));
     }
 }
