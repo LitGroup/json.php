@@ -59,7 +59,7 @@ final class JsonNumber implements JsonValue
      * magnitude and precision of the number value as well as return
      * a result with the opposite sign.
      */
-    public function intValue(): int
+    public function getInt(): int
     {
         return (int) $this->getValue();
     }
@@ -67,7 +67,7 @@ final class JsonNumber implements JsonValue
     /**
      * Returns this JSON number as a float.
      */
-    public function floatValue(): float
+    public function getFloat(): float
     {
         return (float) $this->getValue();
     }
@@ -86,7 +86,7 @@ final class JsonNumber implements JsonValue
         if (is_int($this->getValue()) && is_int($another->getValue())) {
             return $this->getValue() === $another->getValue();
         } else {
-            return abs($this->floatValue() - $another->floatValue()) <= $precision;
+            return abs($this->getFloat() - $another->getFloat()) <= $precision;
         }
     }
 

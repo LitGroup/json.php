@@ -40,7 +40,7 @@ final class JsonString implements JsonValue
         $this->str = $str;
     }
 
-    public function stringValue(): string
+    public function getString(): string
     {
         return $this->str;
     }
@@ -55,12 +55,12 @@ final class JsonString implements JsonValue
      */
     public function length(): int
     {
-        return mb_strlen($this->stringValue(), 'utf-8');
+        return mb_strlen($this->getString(), 'utf-8');
     }
 
     public function equals(self $another): bool
     {
-        return $this->stringValue() === $another->stringValue();
+        return $this->getString() === $another->getString();
     }
 
     public function getValueType(): JsonValueType

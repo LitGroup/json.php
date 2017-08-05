@@ -45,24 +45,24 @@ final class JsonBoolean implements JsonValue
         $this->value = $value;
     }
 
-    public function boolValue(): bool
+    public function getBool(): bool
     {
         return $this->value;
     }
 
     public function isTrue(): bool
     {
-        return $this->boolValue();
+        return $this->getBool();
     }
 
     public function isFalse(): bool
     {
-        return !$this->boolValue();
+        return !$this->getBool();
     }
 
     public function equals(self $another): bool
     {
-        return $this->boolValue() === $another->boolValue();
+        return $this->getBool() === $another->getBool();
     }
 
     public function getValueType(): JsonValueType

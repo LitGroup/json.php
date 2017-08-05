@@ -28,7 +28,4 @@ namespace LitGroup\Json;
 /**
  * Super type for the two structured types in JSON (objects and arrays).
  */
-interface JsonStructure extends JsonValue
-{
-
-}
+interface JsonStructure extends JsonValue {}

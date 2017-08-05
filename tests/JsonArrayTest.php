@@ -25,52 +25,38 @@ declare(strict_types=1);
 
 namespace Test\LitGroup\Json;
 
+use LitGroup\Json\JsonArray;
 use LitGroup\Json\JsonString;
-use LitGroup\Json\JsonValue;
+use LitGroup\Json\JsonStructure;
 use PHPUnit\Framework\TestCase;
 
-class JsonStringTest extends TestCase
+class JsonArrayTest extends TestCase
 {
     function testInstance(): void
     {
-        self::assertInstanceOf(JsonValue::class, new JsonString(''));
-    }
-
-    function testIsNullPredicate(): void
-    {
-        self::assertFalse((new JsonString(''))->isNull());
-    }
-
-    function testIsEmptyPredicate(): void
-    {
-        self::assertTrue((new JsonString(''))->isEmpty());
-        self::assertFalse((new JsonString('hello'))->isEmpty());
+        $array = JsonArray::createBuilder()->build();
+        self::assertInstanceOf(JsonStructure::class, $array);
     }
 
     function testValueType(): void
     {
-        $str = new JsonString('');
-        self::assertTrue($str->getValueType()->isString());
+        $array = JsonArray::createBuilder()->build();
+        self::assertTrue($array->getValueType()->isArray());
     }
 
-    function testLength(): void
+    function testIsNullPredicate(): void
     {
-        self::assertEquals(0, (new JsonString(''))->length());
-        self::assertEquals(5, (new JsonString('hello'))->length());
-        self::assertEquals(6, (new JsonString('привет'))->length());
+        $array = JsonArray::createBuilder()->build();
+        self::assertFalse($array->isNull());
     }
 
-    function testRetrievingOfStringValue(): void
+    function testValues(): void
     {
-        $str = new JsonString('Hello');
-        self::assertEquals('Hello', $str->getString());
-    }
+        $value = new JsonString('some value');
+        $array = JsonArray::createBuilder()
+            ->add($value)
+            ->build();
 
-    function testEquality(): void
-    {
-        $str = new JsonString('Some string');
-
-        self::assertTrue($str->equals(new JsonString('Some string')));
-        self::assertFalse($str->equals(new JsonString('Another string')));
+        self::assertTrue($value->equals($array->getJsonValue(0)));
     }
 }
