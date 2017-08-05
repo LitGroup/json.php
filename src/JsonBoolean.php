@@ -65,6 +65,11 @@ final class JsonBoolean implements JsonValue
         return $this->boolValue() === $another->boolValue();
     }
 
+    public function getValueType(): JsonValueType
+    {
+        return JsonValueType::JsonBoolean();
+    }
+
     public function isNull(): bool
     {
         return false;

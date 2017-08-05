@@ -30,5 +30,7 @@ namespace LitGroup\Json;
  */
 interface JsonValue
 {
+    public function getValueType(): JsonValueType;
+
     public function isNull(): bool;
 }

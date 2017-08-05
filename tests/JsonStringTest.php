@@ -47,6 +47,12 @@ class JsonStringTest extends TestCase
         self::assertFalse((new JsonString('hello'))->isEmpty());
     }
 
+    function testValueType(): void
+    {
+        $str = new JsonString('');
+        self::assertTrue($str->getValueType()->isString());
+    }
+
     function testLength(): void
     {
         self::assertEquals(0, (new JsonString(''))->length());

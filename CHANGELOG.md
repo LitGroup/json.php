@@ -11,6 +11,7 @@ previous releases.**
 
 ### Added
 - `JsonValue` interface.
+- `JsonValueType` enumeration.
 - `JsonNull` value object.
 - `JsonString` value object.
 - `JsonBoolean` value object.

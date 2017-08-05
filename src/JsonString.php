@@ -63,6 +63,11 @@ final class JsonString implements JsonValue
         return $this->stringValue() === $another->stringValue();
     }
 
+    public function getValueType(): JsonValueType
+    {
+        return JsonValueType::JsonString();
+    }
+
     public function isNull(): bool
     {
         return false;

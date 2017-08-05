@@ -27,6 +27,7 @@ namespace Test\LitGroup\Json;
 
 use LitGroup\Json\JsonBoolean;
 use LitGroup\Json\JsonValue;
+use LitGroup\Json\JsonValueType;
 use PHPUnit\Framework\TestCase;
 
 class JsonBooleanTest extends TestCase
@@ -36,16 +37,22 @@ class JsonBooleanTest extends TestCase
         self::assertInstanceOf(JsonValue::class, new JsonBoolean(true));
     }
 
+    function testFactories(): void
+    {
+        self::assertTrue(JsonBoolean::trueValue()->boolValue());
+        self::assertFalse(JsonBoolean::falseValue()->boolValue());
+    }
+
     function testIsNullPredicate(): void
     {
         self::assertFalse(JsonBoolean::trueValue()->isNull());
         self::assertFalse(JsonBoolean::falseValue()->isNull());
     }
 
-    function testFactories(): void
+    function testValueType(): void
     {
-        self::assertTrue(JsonBoolean::trueValue()->boolValue());
-        self::assertFalse(JsonBoolean::falseValue()->boolValue());
+        $jsonBoolean = JsonBoolean::trueValue();
+        self::assertTrue($jsonBoolean->getValueType()->isBoolean());
     }
 
     function testBoolValue(): void

@@ -27,6 +27,11 @@ namespace LitGroup\Json;
 
 final class JsonNull implements JsonValue
 {
+    public function getValueType(): JsonValueType
+    {
+        return JsonValueType::JsonNull();
+    }
+
     public function isNull(): bool
     {
         return true;

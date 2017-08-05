@@ -40,4 +40,10 @@ class JsonNullTest extends TestCase
     {
         self::assertTrue((new JsonNull())->isNull());
     }
+
+    function testValueType(): void
+    {
+        $jsonNull = new JsonNull();
+        self::assertTrue($jsonNull->getValueType()->isNull());
+    }
 }

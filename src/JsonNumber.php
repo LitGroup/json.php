@@ -90,6 +90,11 @@ final class JsonNumber implements JsonValue
         }
     }
 
+    public function getValueType(): JsonValueType
+    {
+        return JsonValueType::JsonNumber();
+    }
+
     public function isNull(): bool
     {
         return false;
