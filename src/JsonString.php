@@ -47,7 +47,15 @@ final class JsonString implements JsonValue
 
     public function isEmpty(): bool
     {
-        return mb_strlen($this->stringValue(), 'utf-8') === 0;
+        return $this->length() === 0;
+    }
+
+    /**
+     * Returns number of utf-8 characters in the string.
+     */
+    public function length(): int
+    {
+        return mb_strlen($this->stringValue(), 'utf-8');
     }
 
     public function equals(self $another): bool
