@@ -15,7 +15,7 @@ previous releases.**
 - `JsonString` value object.
 - `JsonBoolean` value object.
 - `JsonNumber` value object.
-- `JsonStruct` interface.
+- `JsonStructure` interface.
 
 ### Removed
 - `AbstractConfiguration`
