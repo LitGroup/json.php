@@ -25,6 +25,8 @@ declare(strict_types=1);
 
 namespace LitGroup\Json;
 
+use function mb_strlen;
+
 /**
  * An immutable JSON string value.
  */
@@ -41,6 +43,11 @@ final class JsonString implements JsonValue
     public function stringValue(): string
     {
         return $this->str;
+    }
+
+    public function isEmpty(): bool
+    {
+        return mb_strlen($this->stringValue(), 'utf-8') === 0;
     }
 
     public function equals(self $another): bool
