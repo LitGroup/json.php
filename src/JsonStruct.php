@@ -26,30 +26,9 @@ declare(strict_types=1);
 namespace LitGroup\Json;
 
 /**
- * An immutable JSON string value.
+ * Super type for the two structured types in JSON (objects and arrays).
  */
-final class JsonString implements JsonValue
+interface JsonStruct extends JsonValue
 {
-    /** @var string */
-    private $str;
 
-    public function __construct(string $str)
-    {
-        $this->str = $str;
-    }
-
-    public function stringValue(): string
-    {
-        return $this->str;
-    }
-
-    public function equals(self $another): bool
-    {
-        return $this->stringValue() === $another->stringValue();
-    }
-
-    public function isNull(): bool
-    {
-        return false;
-    }
 }

@@ -25,31 +25,10 @@ declare(strict_types=1);
 
 namespace LitGroup\Json;
 
-/**
- * An immutable JSON string value.
- */
-final class JsonString implements JsonValue
+final class JsonNull implements JsonValue
 {
-    /** @var string */
-    private $str;
-
-    public function __construct(string $str)
-    {
-        $this->str = $str;
-    }
-
-    public function stringValue(): string
-    {
-        return $this->str;
-    }
-
-    public function equals(self $another): bool
-    {
-        return $this->stringValue() === $another->stringValue();
-    }
-
     public function isNull(): bool
     {
-        return false;
+        return true;
     }
 }

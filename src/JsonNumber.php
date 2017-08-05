@@ -90,6 +90,11 @@ final class JsonNumber implements JsonValue
         }
     }
 
+    public function isNull(): bool
+    {
+        return false;
+    }
+
     /**
      * @return int|float
      */

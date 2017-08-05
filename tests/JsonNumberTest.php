@@ -37,6 +37,11 @@ class JsonNumberTest extends TestCase
         self::assertInstanceOf(JsonValue::class, new JsonNumber(10.0));
     }
 
+    function testIsNullPredicate(): void
+    {
+        self::assertFalse((new JsonNumber(10))->isNull());
+    }
+
     function testInstantiationExceptionForNotNumber(): void
     {
         $this->expectException(\InvalidArgumentException::class);

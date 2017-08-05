@@ -36,6 +36,11 @@ class JsonStringTest extends TestCase
         self::assertInstanceOf(JsonValue::class, new JsonString(''));
     }
 
+    function testIsNullPredicate(): void
+    {
+        self::assertFalse((new JsonString(''))->isNull());
+    }
+
     function testRetrievingOfStringValue(): void
     {
         $str = new JsonString('Hello');

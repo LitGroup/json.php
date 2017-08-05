@@ -36,6 +36,12 @@ class JsonBooleanTest extends TestCase
         self::assertInstanceOf(JsonValue::class, new JsonBoolean(true));
     }
 
+    function testIsNullPredicate(): void
+    {
+        self::assertFalse(JsonBoolean::trueValue()->isNull());
+        self::assertFalse(JsonBoolean::falseValue()->isNull());
+    }
+
     function testFactories(): void
     {
         self::assertTrue(JsonBoolean::trueValue()->boolValue());

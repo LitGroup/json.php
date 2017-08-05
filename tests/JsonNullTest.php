@@ -23,33 +23,21 @@
 
 declare(strict_types=1);
 
-namespace LitGroup\Json;
+namespace Test\LitGroup\Json;
 
-/**
- * An immutable JSON string value.
- */
-final class JsonString implements JsonValue
+use LitGroup\Json\JsonNull;
+use LitGroup\Json\JsonValue;
+use PHPUnit\Framework\TestCase;
+
+class JsonNullTest extends TestCase
 {
-    /** @var string */
-    private $str;
-
-    public function __construct(string $str)
+    function testInstance(): void
     {
-        $this->str = $str;
+        self::assertInstanceOf(JsonValue::class, new JsonNull());
     }
 
-    public function stringValue(): string
+    function testIsNullPredicate(): void
     {
-        return $this->str;
-    }
-
-    public function equals(self $another): bool
-    {
-        return $this->stringValue() === $another->stringValue();
-    }
-
-    public function isNull(): bool
-    {
-        return false;
+        self::assertTrue((new JsonNull())->isNull());
     }
 }
