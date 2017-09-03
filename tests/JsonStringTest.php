@@ -63,7 +63,7 @@ class JsonStringTest extends TestCase
     function testRetrievingOfStringValue(): void
     {
         $str = new JsonString('Hello');
-        self::assertEquals('Hello', $str->getString());
+        self::assertEquals('Hello', $str->toString());
     }
 
     function testEquality(): void

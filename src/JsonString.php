@@ -33,16 +33,16 @@ use function mb_strlen;
 final class JsonString implements JsonValue
 {
     /** @var string */
-    private $str;
+    private $value;
 
     public function __construct(string $str)
     {
-        $this->str = $str;
+        $this->value = $str;
     }
 
-    public function getString(): string
+    public function toString(): string
     {
-        return $this->str;
+        return $this->getValue();
     }
 
     public function isEmpty(): bool
@@ -55,12 +55,12 @@ final class JsonString implements JsonValue
      */
     public function length(): int
     {
-        return mb_strlen($this->getString(), 'utf-8');
+        return mb_strlen($this->getValue(), 'utf-8');
     }
 
     public function equals(self $another): bool
     {
-        return $this->getString() === $another->getString();
+        return $this->getValue() === $another->getValue();
     }
 
     public function getValueType(): JsonValueType
@@ -71,5 +71,10 @@ final class JsonString implements JsonValue
     public function isNull(): bool
     {
         return false;
+    }
+
+    private function getValue(): string
+    {
+        return $this->value;
     }
 }

@@ -39,8 +39,8 @@ class JsonBooleanTest extends TestCase
 
     function testFactories(): void
     {
-        self::assertTrue(JsonBoolean::trueValue()->getBool());
-        self::assertFalse(JsonBoolean::falseValue()->getBool());
+        self::assertTrue(JsonBoolean::trueValue()->toBool());
+        self::assertFalse(JsonBoolean::falseValue()->toBool());
     }
 
     function testIsNullPredicate(): void
@@ -58,10 +58,10 @@ class JsonBooleanTest extends TestCase
     function testBoolValue(): void
     {
         $jsonBoolean= new JsonBoolean(true);
-        self::assertTrue($jsonBoolean->getBool());
+        self::assertTrue($jsonBoolean->toBool());
 
         $jsonBoolean= new JsonBoolean(false);
-        self::assertFalse($jsonBoolean->getBool());
+        self::assertFalse($jsonBoolean->toBool());
     }
 
     function testPredicates(): void

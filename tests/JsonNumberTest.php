@@ -104,24 +104,24 @@ class JsonNumberTest extends TestCase
     function testIntValue(): void
     {
         $number = new JsonNumber(10);
-        self::assertEquals(10, $number->getInt());
+        self::assertEquals(10, $number->toInt());
 
         $number = new JsonNumber(10.0);
-        self::assertEquals(10, $number->getInt());
+        self::assertEquals(10, $number->toInt());
 
         $number = new JsonNumber(10.1);
-        self::assertEquals(10, $number->getInt());
+        self::assertEquals(10, $number->toInt());
     }
 
     function testFloatValue(): void
     {
         $number = new JsonNumber(10.0);
-        self::assertEquals(10.0, $number->getFloat());
+        self::assertEquals(10.0, $number->toFloat());
 
         $number = new JsonNumber(10.1);
-        self::assertEquals(10.1, $number->getFloat());
+        self::assertEquals(10.1, $number->toFloat());
 
         $number = new JsonNumber(10);
-        self::assertEquals(10.0, $number->getFloat());
+        self::assertEquals(10.0, $number->toFloat());
     }
 }
