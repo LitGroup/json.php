@@ -72,7 +72,7 @@ class JsonArrayTest extends TestCase
         self::assertFalse($array->isEmpty());
     }
 
-    function testIndexedAccess(): void
+    function testAccessJsonValueByIndex(): void
     {
         $value = new JsonString('some value');
         $array = JsonArray::createBuilder()
