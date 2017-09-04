@@ -26,8 +26,9 @@ declare(strict_types=1);
 namespace LitGroup\Json;
 
 use function call_user_func;
+use IteratorAggregate;
 
-final class JsonArray implements JsonStructure
+final class JsonArray implements JsonStructure, IteratorAggregate
 {
 
     /** @var JsonValue[] */
@@ -38,9 +39,26 @@ final class JsonArray implements JsonStructure
         return new JsonArrayBuilder(function (array $elements) { return new JsonArray($elements); });
     }
 
+    public function count(): int
+    {
+        return count($this->getElements());
+    }
+
+    public function isEmpty(): bool
+    {
+        return $this->count() === 0;
+    }
+
+    public function getIterator()
+    {
+        foreach ($this->getElements() as $element) {
+            yield $element;
+        }
+    }
+
     public function getJsonValue(int $index): JsonValue
     {
-        return $this->elements[$index];
+        return $this->getElements()[$index];
     }
 
     public function getValueType(): JsonValueType
@@ -60,6 +78,14 @@ final class JsonArray implements JsonStructure
     private function __construct(array $elements)
     {
         $this->elements = $elements;
+    }
+
+    /**
+     * @return JsonValue[]
+     */
+    private function getElements(): array
+    {
+        return $this->elements;
     }
 }
 

@@ -50,6 +50,28 @@ class JsonArrayTest extends TestCase
         self::assertFalse($array->isNull());
     }
 
+    function testCount(): void
+    {
+        $array = JsonArray::createBuilder()->build();
+        self::assertEquals(0, $array->count());
+
+        $array = JsonArray::createBuilder()
+            ->add(new JsonString('some string'))
+            ->build();
+        self::assertEquals(1, $array->count());
+    }
+
+    function testEmptyPredicate(): void
+    {
+        $array = JsonArray::createBuilder()->build();
+        self::assertTrue($array->isEmpty());
+
+        $array = JsonArray::createBuilder()
+            ->add(new JsonString('some string'))
+            ->build();
+        self::assertFalse($array->isEmpty());
+    }
+
     function testValues(): void
     {
         $value = new JsonString('some value');
@@ -58,5 +80,25 @@ class JsonArrayTest extends TestCase
             ->build();
 
         self::assertTrue($value->equals($array->getJsonValue(0)));
+    }
+
+    function testIterator(): void
+    {
+        $element0 = new JsonString('one string');
+        $element1 = new JsonString('another string');
+
+        $array = JsonArray::createBuilder()
+            ->add($element0)
+            ->add($element1)
+            ->build();
+
+        $elements = [];
+        foreach ($array as $element) {
+            $elements[] = $element;
+        }
+
+        self::assertCount(2, $elements);
+        self::assertTrue($element0->equals($elements[0]));
+        self::assertTrue($element1->equals($elements[1]));
     }
 }
