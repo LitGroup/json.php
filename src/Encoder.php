@@ -82,7 +82,7 @@ class Encoder
 
                 return $elements;
             default:
-                throw new \RuntimeException("Must not be reachable!"); // @codeCoverageIgnore
+                throw new \RuntimeException('This line of code must not be reachable!'); // @codeCoverageIgnore
         }
     }
 }

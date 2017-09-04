@@ -25,7 +25,6 @@ declare(strict_types=1);
 
 namespace Test\LitGroup\Json\Exception;
 
-use LitGroup\Json\Exception\Exception;
 use LitGroup\Json\Exception\FormatException;
 use PHPUnit\Framework\TestCase;
 
@@ -34,7 +33,6 @@ class FormatExceptionTest extends TestCase
     function testInstantiation(): void
     {
         $exception = new FormatException('message');
-        self::assertInstanceOf(Exception::class, $exception);
         self::assertEquals('message', $exception->getMessage());
     }
 }

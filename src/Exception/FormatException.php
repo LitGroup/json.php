@@ -25,6 +25,8 @@ declare(strict_types=1);
 
 namespace LitGroup\Json\Exception;
 
+use Exception;
+
 final class FormatException extends Exception
 {
     public function __construct(string $message)
