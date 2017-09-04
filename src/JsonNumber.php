@@ -25,6 +25,8 @@ declare(strict_types=1);
 
 namespace LitGroup\Json;
 
+use LitGroup\Json\Exception\FormatException;
+
 final class JsonNumber implements JsonValue
 {
     /** @var int|float */
@@ -62,6 +64,18 @@ final class JsonNumber implements JsonValue
     public function toInt(): int
     {
         return (int) $this->getValue();
+    }
+
+    /**
+     * @throws FormatException if the number has a fractional part.
+     */
+    public function toIntExact(): int
+    {
+        if (!$this->isIntegral()) {
+            throw new FormatException("{$this->getValue()} is not an integral value.");
+        }
+
+        return $this->toInt();
     }
 
     /**

@@ -25,6 +25,7 @@ declare(strict_types=1);
 
 namespace Test\LitGroup\Json;
 
+use LitGroup\Json\Exception\FormatException;
 use LitGroup\Json\JsonNumber;
 use LitGroup\Json\JsonValue;
 use PHPUnit\Framework\TestCase;
@@ -111,6 +112,21 @@ class JsonNumberTest extends TestCase
 
         $number = new JsonNumber(10.1);
         self::assertEquals(10, $number->toInt());
+    }
+
+    function testExactlyIntValueConversion(): void
+    {
+        $number = new JsonNumber(10);
+        self::assertSame(10, $number->toIntExact());
+    }
+
+    function testExactlyIntValueConversionForNonIntegralValue(): void
+    {
+        $number = new JsonNumber(10.1);
+        $this->expectException(FormatException::class);
+        $this->expectExceptionMessage('10.1 is not an integral value.');
+
+        $number->toIntExact();
     }
 
     function testFloatValue(): void
