@@ -25,17 +25,16 @@ declare(strict_types=1);
 
 namespace Test\LitGroup\Json\Exception;
 
-use LitGroup\Json\Exception\JsonException;
+use LitGroup\Json\Exception\Exception;
+use LitGroup\Json\Exception\FormatException;
 use PHPUnit\Framework\TestCase;
 
-class JsonExceptionTest extends TestCase
+class FormatExceptionTest extends TestCase
 {
     function testInstantiation(): void
     {
-        $previous = new \Exception();
-        $exception = new class('message', $previous) extends JsonException {};
-
-        self::assertSame('message', $exception->getMessage());
-        self::assertSame($previous, $exception->getPrevious());
+        $exception = new FormatException('message');
+        self::assertInstanceOf(Exception::class, $exception);
+        self::assertEquals('message', $exception->getMessage());
     }
 }

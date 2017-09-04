@@ -25,11 +25,9 @@ declare(strict_types=1);
 
 namespace LitGroup\Json\Exception;
 
-use Exception;
-
-abstract class JsonException extends Exception
+abstract class Exception extends \Exception
 {
-    public function __construct(string $message = "", Exception $previous = null)
+    public function __construct(string $message = "", \Exception $previous = null)
     {
         parent::__construct($message, 0, $previous);
     }
