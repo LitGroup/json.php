@@ -52,6 +52,10 @@ class JsonValueTypeTest extends TestCase
         $type = JsonValueType::JsonArray();
         self::assertTrue($type->isArray());
         self::assertFalse($type->isNull());
+
+        $type = JsonValueType::JsonObject();
+        self::assertTrue($type->isObject());
+        self::assertFalse($type->isNull());
     }
 
     function testEquality(): void

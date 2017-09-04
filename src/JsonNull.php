@@ -27,6 +27,11 @@ namespace LitGroup\Json;
 
 final class JsonNull implements JsonValue
 {
+    public static function value(): self
+    {
+        return new self();
+    }
+
     public function getValueType(): JsonValueType
     {
         return JsonValueType::JsonNull();
@@ -36,4 +41,6 @@ final class JsonNull implements JsonValue
     {
         return true;
     }
+
+    private function __construct() {}
 }

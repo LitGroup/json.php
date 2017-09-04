@@ -33,17 +33,16 @@ class JsonNullTest extends TestCase
 {
     function testInstance(): void
     {
-        self::assertInstanceOf(JsonValue::class, new JsonNull());
+        self::assertInstanceOf(JsonValue::class, JsonNull::value());
     }
 
     function testIsNullPredicate(): void
     {
-        self::assertTrue((new JsonNull())->isNull());
+        self::assertTrue(JsonNull::value()->isNull());
     }
 
     function testValueType(): void
     {
-        $jsonNull = new JsonNull();
-        self::assertTrue($jsonNull->getValueType()->isNull());
+        self::assertTrue(JsonNull::value()->isNull());
     }
 }

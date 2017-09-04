@@ -26,22 +26,32 @@ declare(strict_types=1);
 namespace LitGroup\Json;
 
 use function call_user_func;
+use function array_key_exists;
 use IteratorAggregate;
 
-final class JsonArray implements JsonStructure, IteratorAggregate
+final class JsonObject implements JsonStructure, IteratorAggregate
 {
+    /** @var array */
+    private $properties;
 
-    /** @var JsonValue[] */
-    private $elements;
-
-    public static function createBuilder(): JsonArrayBuilder
+    public static function createBuilder(): JsonObjectBuilder
     {
-        return new JsonArrayBuilder(function (array $elements) { return new JsonArray($elements); });
+        return new JsonObjectBuilder(function (array $properties) { return new JsonObject($properties); });
+    }
+
+    public function getValueType(): JsonValueType
+    {
+        return JsonValueType::JsonObject();
+    }
+
+    public function isNull(): bool
+    {
+        return false;
     }
 
     public function count(): int
     {
-        return count($this->getElements());
+        return count($this->getProperties());
     }
 
     public function isEmpty(): bool
@@ -51,77 +61,64 @@ final class JsonArray implements JsonStructure, IteratorAggregate
 
     public function getIterator()
     {
-        foreach ($this->getElements() as $element) {
-            yield $element;
+        foreach ($this->getProperties() as $name => $property) {
+            yield $name => $property;
         }
     }
 
-    public function getJsonValue(int $index): JsonValue
+    public function getJsonValue(string $name): JsonValue
     {
-        return $this->getElements()[$index];
+        if (array_key_exists($name, $this->getProperties())) {
+            return $this->getProperties()[$name];
+        }
+
+        return JsonNull::value();
     }
 
-    public function getValueType(): JsonValueType
+    private function __construct(array $properties)
     {
-        return JsonValueType::JsonArray();
+        $this->properties = $properties;
     }
 
-    public function isNull(): bool
+    private function getProperties(): array
     {
-        return false;
-    }
-
-    /**
-     * JsonArray constructor.
-     * @param JsonValue[] $elements
-     */
-    private function __construct(array $elements)
-    {
-        $this->elements = $elements;
-    }
-
-    /**
-     * @return JsonValue[]
-     */
-    private function getElements(): array
-    {
-        return $this->elements;
+        return $this->properties;
     }
 }
 
-class JsonArrayBuilder
+final class JsonObjectBuilder
 {
     /** @var callable */
     private $factory;
 
-    /** @var JsonValue[] */
-    private $elements = [];
+    /** @var array */
+    private $properties = [];
 
-    /** @internal */
-    public function __construct(callable $arrayFactory)
+    /** @internal  */
+    public function __construct(callable $factory)
     {
-        $this->factory = $arrayFactory;
+        $this->factory = $factory;
     }
 
-    public function add(JsonValue $value): self
+    public function add(string $name, JsonValue $value): self
     {
-        $this->elements[] = $value;
+        $this->properties[$name] = $value;
 
         return $this;
     }
 
-    public function build(): JsonArray
+    public function build(): JsonObject
     {
-        return call_user_func($this->getFactory(), $this->getElements());
+        return call_user_func($this->getFactory(), $this->getProperties());
+    }
+
+    private function getProperties(): array
+    {
+        return $this->properties;
     }
 
     private function getFactory(): callable
     {
         return $this->factory;
-    }
-
-    private function getElements(): array
-    {
-        return $this->elements;
     }
 }

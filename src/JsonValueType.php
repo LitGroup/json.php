@@ -60,6 +60,11 @@ final class JsonValueType
         return self::create('array');
     }
 
+    public static function JsonObject(): self
+    {
+        return self::create('object');
+    }
+
     public function isNull(): bool
     {
         return $this === self::JsonNull();
@@ -83,6 +88,11 @@ final class JsonValueType
     public function isArray(): bool
     {
         return $this === self::JsonArray();
+    }
+
+    public function isObject(): bool
+    {
+        return $this === self::JsonObject();
     }
 
     public function equals(self $type): bool
