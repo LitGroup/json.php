@@ -6,7 +6,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
-**Library has been completely overwritten without backward compatibility with
+**Library has been completely rewritten without backward compatibility with
 previous releases.**
 
 ## [0.1.1] - 2016-03-09

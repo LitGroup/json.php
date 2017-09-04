@@ -6,7 +6,7 @@ JSON
 [![Downloads](https://img.shields.io/packagist/dt/litgroup/json.svg)](https://packagist.org/packages/litgroup/json)
 [![Build Status](https://travis-ci.org/LitGroup/json.php.svg?branch=master)](https://travis-ci.org/LitGroup/json.php)
 
-> Library has been completely overwritten in release `0.2.0`.
+> Library has been completely rewritten in release `0.2.0`.
 > You can find documentation for release `0.1.1` [here][doc_0.1].
 
 LICENSE
