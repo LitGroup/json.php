@@ -25,7 +25,11 @@ declare(strict_types=1);
 
 namespace Test\LitGroup\Json;
 
+use LitGroup\Json\Exception\FormatException;
+use LitGroup\Json\JsonArray;
+use LitGroup\Json\JsonBoolean;
 use LitGroup\Json\JsonNull;
+use LitGroup\Json\JsonNumber;
 use LitGroup\Json\JsonObject;
 use LitGroup\Json\JsonString;
 use LitGroup\Json\JsonStructure;
@@ -91,5 +95,108 @@ class JsonObjectTest extends TestCase
         }
         self::assertCount(1, $properties);
         self::assertTrue($value->equals($properties['some_property']));
+    }
+
+    function testAccessJsonString(): void
+    {
+        $str = new JsonString('some string');
+        $object = JsonObject::createBuilder()
+            ->add('prop', $str)
+            ->build();
+
+        self::assertTrue($object->getJsonString('prop')->equals($str));
+        self::assertNull($object->getJsonString('missing'));
+    }
+
+    function testAccessJsonStringException(): void
+    {
+        $object = JsonObject::createBuilder()
+            ->add('prop', new JsonNumber(0))
+            ->build();
+
+        $this->expectException(FormatException::class);
+        $object->getJsonString('prop');
+    }
+
+    function testAccessJsonNumber(): void
+    {
+        $num = new JsonNumber(10);
+        $object = JsonObject::createBuilder()
+            ->add('prop', $num)
+            ->build();
+
+        self::assertTrue($object->getJsonNumber('prop')->equals($num));
+        self::assertNull($object->getJsonNumber('missing'));
+    }
+
+    function testAccessJsonNumberException(): void
+    {
+        $object = JsonObject::createBuilder()
+            ->add('prop', new JsonString('some string'))
+            ->build();
+
+        $this->expectException(FormatException::class);
+        $object->getJsonNumber('prop');
+    }
+
+    function testAccessJsonBoolean(): void
+    {
+        $bool = JsonBoolean::trueValue();
+        $object = JsonObject::createBuilder()
+            ->add('prop', $bool)
+            ->build();
+
+        self::assertTrue($object->getJsonBoolean('prop')->equals($bool));
+        self::assertNull($object->getJsonBoolean('missing'));
+    }
+
+    function testAccessJsonBooleanException(): void
+    {
+        $object = JsonObject::createBuilder()
+            ->add('prop', new JsonNumber(0))
+            ->build();
+
+        $this->expectException(FormatException::class);
+        $object->getJsonBoolean('prop');
+    }
+
+    function testAccessJsonObject(): void
+    {
+        $object = JsonObject::createBuilder()
+            ->add('prop', JsonObject::createBuilder()->build())
+            ->build();
+
+        self::assertNotNull($object->getJsonObject('prop'));
+        self::assertNull($object->getJsonObject('missing'));
+    }
+
+    function testAccessJsonObjectException(): void
+    {
+        $object = JsonObject::createBuilder()
+            ->add('prop', new JsonNumber(0))
+            ->build();
+
+        $this->expectException(FormatException::class);
+        $object->getJsonObject('prop');
+    }
+
+    function testAccessJsonArray(): void
+    {
+        $object = JsonObject::createBuilder()
+            ->add('prop', JsonArray::createBuilder()->build())
+            ->build();
+
+        self::assertNotNull($object->getJsonArray('prop'));
+        self::assertNull($object->getJsonArray('missing'));
+    }
+
+    function testAccessJsonArrayException(): void
+    {
+        $object = JsonObject::createBuilder()
+            ->add('prop', new JsonNumber(0))
+            ->build();
+
+        $this->expectException(FormatException::class);
+        $object->getJsonArray('prop');
     }
 }

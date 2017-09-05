@@ -28,6 +28,7 @@ namespace LitGroup\Json;
 use function call_user_func;
 use function array_key_exists;
 use IteratorAggregate;
+use LitGroup\Json\Exception\FormatException;
 
 final class JsonObject implements JsonStructure, IteratorAggregate
 {
@@ -73,6 +74,81 @@ final class JsonObject implements JsonStructure, IteratorAggregate
         }
 
         return JsonNull::value();
+    }
+
+    public function getJsonString(string $name): ?JsonString
+    {
+        $value = $this->getJsonValue($name);
+
+        if ($value->isNull()) {
+            return null;
+        }
+
+        if (!$value instanceof JsonString) {
+            throw new FormatException("Property \"{$name}\" must be a string.");
+        }
+
+        return $value;
+    }
+
+    public function getJsonNumber(string $name): ?JsonNumber
+    {
+        $value = $this->getJsonValue($name);
+
+        if ($value->isNull()) {
+            return null;
+        }
+
+        if (!$value instanceof  JsonNumber) {
+            throw new FormatException("Property \"{$name}\" must be a number.");
+        }
+
+        return $value;
+    }
+
+    public function getJsonBoolean(string $name): ?JsonBoolean
+    {
+        $value = $this->getJsonValue($name);
+
+        if ($value->isNull()) {
+            return null;
+        }
+
+        if (!$value instanceof JsonBoolean) {
+            throw new FormatException("Property \"{$name}\" must be a boolean.");
+        }
+
+        return $value;
+    }
+
+    public function getJsonObject(string $name): ?JsonObject
+    {
+        $value = $this->getJsonValue($name);
+
+        if ($value->isNull()) {
+            return null;
+        }
+
+        if (!$value instanceof  JsonObject) {
+            throw new FormatException("Property \"{$name}\" must be an object.");
+        }
+
+        return $value;
+    }
+
+    public function getJsonArray(string $name): ?JsonArray
+    {
+        $value = $this->getJsonValue($name);
+
+        if ($value->isNull()) {
+            return null;
+        }
+
+        if (!$value instanceof  JsonArray) {
+            throw new FormatException("Property \"{$name}\" must be an array.");
+        }
+
+        return $value;
     }
 
     private function __construct(array $properties)
