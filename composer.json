@@ -31,6 +31,17 @@
             "dev-master": "1.0.x-dev"
         }
     },
+    "scripts": {
+        "test": [
+            "vendor/bin/phpunit --configuration . "
+        ],
+        "test-coverage-html": [
+            "exec phpdbg -qrr vendor/bin/phpunit --configuration=. --coverage-html=build/coverage"
+        ],
+        "test-ci": [
+            "exec phpdbg -qrr vendor/bin/phpunit --configuration=. --colors=never --coverage-text"
+        ]
+    },
     "archive": {
         "exclude": [
             "/tests",
