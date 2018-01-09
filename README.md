@@ -6,6 +6,14 @@ JSON
 [![Downloads](https://img.shields.io/packagist/dt/litgroup/json.svg)](https://packagist.org/packages/litgroup/json)
 [![Build Status](https://travis-ci.org/LitGroup/json.php.svg?branch=master)](https://travis-ci.org/LitGroup/json.php)
 
-See documentation for the last release [here][currentdoc]
+## Installation
+
+```
+composer require litgroup/json:^1.0
+```
+
+## Example of Usage
+
+TODO: Adds example.
 
 [currentdoc]: https://github.com/LitGroup/json.php/blob/v0.1.1/README.md
