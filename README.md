@@ -1,5 +1,5 @@
-JSON
-====
+# JSON
+
 [![Version](https://img.shields.io/packagist/v/litgroup/json.svg)](https://packagist.org/packages/litgroup/json)
 [![Dev Version](https://img.shields.io/packagist/vpre/litgroup/json.svg)](https://packagist.org/packages/litgroup/json)
 [![License](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/LitGroup/json.php/blob/master/LICENSE)
@@ -13,7 +13,7 @@ composer require litgroup/json:^1.0
 ```
 
 ## Example of Usage
-
 TODO: Adds example.
 
-[currentdoc]: https://github.com/LitGroup/json.php/blob/v0.1.1/README.md
+## LICENSE
+See [LICENSE](https://github.com/LitGroup/json.php/blob/master/LICENSE) file for details.
