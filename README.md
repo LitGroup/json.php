@@ -9,7 +9,7 @@
 ## Installation
 
 ```
-composer require litgroup/json:^1.0
+composer require litgroup/json:^1.0-beta
 ```
 
 ## Example of Usage
