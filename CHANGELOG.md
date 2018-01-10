@@ -3,6 +3,14 @@ All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
+> **NOT BACKWARD COMPATIBLE:** This release completely replaces previous code.
+
+### Added
+- Model of JSON structure (`JsonNumber`, `JsonString`, `JsonBoolean`,
+  `JsonArray`, `JsonObject`)
+- JSON  `Encoder`
+- JSON  `Decoder`
+
 
 ## [0.1.1] - 2016-03-09
 ### Changed
