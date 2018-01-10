@@ -138,7 +138,7 @@ class JsonObjectTest extends TestCase
             ->build();
 
         $this->assertTrue($object->containsNull('null'));
-        $this->assertTrue($object->containsNull('not-defined'));
+        $this->assertFalse($object->containsNull('not-defined'));
         $this->assertFalse($object->containsNull('string'));
 
         $this->assertTrue($object->containsString('string'));

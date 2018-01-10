@@ -77,7 +77,7 @@ final class JsonObject implements JsonStructure
 
     public function containsNull(string $key): bool
     {
-        return $this->getOptionalJsonValue($key) === null;
+        return $this->hasProperty($key) && $this->getOptionalJsonValue($key) === null;
     }
 
     public function containsString(string $key): bool
