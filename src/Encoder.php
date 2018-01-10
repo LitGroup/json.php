@@ -1,58 +1,68 @@
 <?php
 /**
- * This file is part of the "litgroup/json" package.
+ * Copyright (c) 2018 LitGroup, LLC
  *
- * (c) Roman Shamritskiy <roman@litgroup.ru>
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is furnished
+ * to do so, subject to the following conditions:
  *
- * This source file is subject to the MIT license that is bundled
- * with this source code in the file LICENSE.
+ * The above copyright notice and this permission notice shall be included in all
+ * copies or substantial portions of the Software.
+ *
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+ * THE SOFTWARE.
  */
+
+declare(strict_types=1);
 
 namespace LitGroup\Json;
 
-use LitGroup\Json\Exception\JsonException;
 
-/**
- * Class Encoder
- *
- * @author Roman Shamritskiy <roman@litgroup.ru>
- */
-class Encoder implements EncoderInterface
+class Encoder
 {
-    /**
-     * @var EncoderConfiguration
-     */
-    private $config;
-
-
-    /**
-     * Encoder constructor.
-     *
-     * @param EncoderConfiguration $config
-     */
-    public function __construct(EncoderConfiguration $config)
+    public function encode(JsonStructure $structure): string
     {
-        $this->config = $config;
+        return json_encode(
+            $this->convertValue($structure),
+            JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES
+        );
     }
 
-    /**
-     * {@inheritDoc}
-     */
-    public function encode($value)
+    private function convertValue(?JsonValue $value)
     {
-        $result = json_encode(
-            $value,
-            $this->config->getOptionsBitmask(),
-            $this->config->getMaxDepth()
-        );
+       if ($value === null) {
+           return null;
+       } elseif ($value instanceof JsonNumber) {
+           return $value->isIntegral() ? $value->toInt() : $value->toFloat();
+       } elseif ($value instanceof JsonString) {
+           return $value->toString();
+       } elseif ($value instanceof JsonBoolean) {
+           return $value->toBool();
+       } elseif ($value instanceof JsonArray) {
+           $result = [];
+           for ($i = 0, $count = $value->count(); $i < $count; $i++) {
+               $result[] = $this->convertValue($value->getOptionalJsonValue($i));
+           }
 
-        if (json_last_error() != JSON_ERROR_NONE) {
-            throw new JsonException(
-                json_last_error_msg(),
-                json_last_error()
-            );
-        }
+           return $result;
+       } elseif ($value instanceof JsonObject) {
+           $result = [];
+           foreach ($value->getKeys() as $key) {
+               $result[$key] = $this->convertValue($value->getOptionalJsonValue($key));
+           }
 
-        return $result;
+           return (object) $result;
+       }
+        // @codeCoverageIgnoreStart
+        throw new \RuntimeException('Must be unreachable');
+        // @codeCoverageIgnoreEnd
     }
 }

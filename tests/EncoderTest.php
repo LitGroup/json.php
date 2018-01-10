@@ -1,84 +1,94 @@
 <?php
 /**
- * This file is part of the "litgroup/json" package.
+ * Copyright (c) 2018 LitGroup, LLC
  *
- * (c) Roman Shamritskiy <roman@litgroup.ru>
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is furnished
+ * to do so, subject to the following conditions:
  *
- * This source file is subject to the MIT license that is bundled
- * with this source code in the file LICENSE.
+ * The above copyright notice and this permission notice shall be included in all
+ * copies or substantial portions of the Software.
+ *
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+ * THE SOFTWARE.
  */
 
-namespace Tests\LitGroup\Json;
+declare(strict_types=1);
+
+namespace Test\LitGroup\Json;
 
 use LitGroup\Json\Encoder;
-use LitGroup\Json\EncoderConfiguration;
+use LitGroup\Json\JsonArray;
+use LitGroup\Json\JsonObject;
+use PHPUnit\Framework\TestCase;
 
-class EncoderTest extends \PHPUnit_Framework_TestCase
+class EncoderTest extends TestCase
 {
-    /**
-     * @var EncoderConfiguration|\PHPUnit_Framework_MockObject_MockObject
-     */
-    private $config;
-
-    /**
-     * @var Encoder
-     */
-    private $encoder;
-
-
-    protected function setUp()
+    function testEncodeObject(): void
     {
-        $this->config = $this->getMock(EncoderConfiguration::class, ['getOptionsBitmask']);
-        $this->encoder = new Encoder($this->config);
+        $encoder = new Encoder();
+
+        $this->assertJsonStringEqualsJsonString(
+            '{
+                "some-int": 100,
+                "some-float": 100.0,
+                "some-bool": true,
+                "another-bool": false,
+                "some-string": "some string",
+                "some-object": {},
+                "some-array": [],
+                "some-null": null
+            }',
+            $encoder->encode(
+                JsonObject::builder()
+                    ->setInt('some-int', 100)
+                    ->setFloat('some-float', 100.0)
+                    ->setBool('some-bool', true)
+                    ->setBool('another-bool', false)
+                    ->setString('some-string', 'some string')
+                    ->setBuilder('some-object', JsonObject::builder())
+                    ->setBuilder('some-array', JsonArray::builder())
+                    ->setString('some-null', null)
+                    ->build()
+            )
+        );
     }
 
-    protected function tearDown()
+    function testEncodeArray(): void
     {
-        $this->config = null;
-        $this->encoder = null;
-        json_encode(null); // To clear last error.
-    }
+        $encoder = new Encoder();
 
-    public function getEncodeTests()
-    {
-        return [
-            [0,                           'Привет, мир!'                               ],
-            [JSON_UNESCAPED_UNICODE,      'Привет, мир!'                               ],
-            [JSON_UNESCAPED_SLASHES,      '/'                                          ],
-            [JSON_HEX_TAG,                'Text with <tag>'                            ],
-            [JSON_HEX_QUOT|JSON_HEX_APOS, 'Text with " and \''                         ],
-            [JSON_HEX_AMP,                'Text with &'                                ],
-            [JSON_NUMERIC_CHECK,          '01027'                                      ],
-            [JSON_PRETTY_PRINT,           ['test' => ['name' => 'Pretty Print Option']]],
-            [JSON_FORCE_OBJECT,           []                                           ],
-        ];
-    }
-    /**
-     * @test
-     * @dataProvider getEncodeTests
-     *
-     * @param int $options
-     * @param mixed $value
-     */
-    public function testEncode($options, $value)
-    {
-        $this->config
-            ->expects($this->any())
-            ->method('getOptionsBitmask')
-            ->willReturn($options)
-        ;
-        $this->assertSame(json_encode($value, $options), $this->encoder->encode($value));
-    }
-    /**
-     * @test
-     * @expectedException \LitGroup\Json\Exception\JsonException
-     */
-    public function testMaxDepthException()
-    {
-        $this->config->setMaxDepth(1);
-
-        // Value with depth > 1
-        $value = ['sub_array' => []];
-        $this->encoder->encode($value);
+        $this->assertJsonStringEqualsJsonString(
+            '[
+                100,
+                100.0,
+                true,
+                false,
+                "some string",
+                {},
+                [],
+                null
+            ]',
+            $encoder->encode(
+                JsonArray::builder()
+                    ->addInt(100)
+                    ->addFloat(100.0)
+                    ->addBool(true)
+                    ->addBool(false)
+                    ->addString('some string')
+                    ->addBuilder(JsonObject::builder())
+                    ->addBuilder(JsonArray::builder())
+                    ->addString(null)
+                    ->build()
+            )
+        );
     }
 }

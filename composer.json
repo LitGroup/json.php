@@ -21,10 +21,10 @@
         }
     },
     "require": {
-        "php": "~5.5|~7.0"
+        "php": "^7.2"
     },
     "require-dev": {
-        "phpunit/phpunit": "~4.8@stable"
+        "phpunit/phpunit": "^6.5@stable"
     },
     "extra": {
         "branch-alias": {
