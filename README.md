@@ -1,5 +1,7 @@
 # JSON
 
+⚡️Experimental, do not use in production!
+
 [![Version](https://img.shields.io/packagist/v/litgroup/json.svg)](https://packagist.org/packages/litgroup/json)
 [![Dev Version](https://img.shields.io/packagist/vpre/litgroup/json.svg)](https://packagist.org/packages/litgroup/json)
 [![License](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/LitGroup/json.php/blob/master/LICENSE)
@@ -9,7 +11,7 @@
 ## Installation
 
 ```
-composer require litgroup/json:^1.0-beta
+composer require litgroup/json
 ```
 
 ## Example of Usage
